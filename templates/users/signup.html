@@ -5,7 +5,11 @@
 
     <h1>Signup</h1>
 
-    <form >
+    <form method="post" >
+
+        {% if message %}
+            <p>{{message}}</p>
+        {% endif %}
 
         {% csrf_token %}
 
