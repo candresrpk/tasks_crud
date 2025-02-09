@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="nav navbar-nav">
+        <a class="nav-item nav-link active" href="#" aria-current="page"
+            >TasksAPP <span class="visually-hidden">(current)</span></a
+        >
+        <a class="nav-item nav-link" href="#">Home</a>
+
+        {% if user.is_authenticated %}
+            <a class="nav-item nav-link" href="#">Logout</a>
+        {% else %}
+            <a class="nav-item nav-link" href="#">Login</a>
+            <a class="nav-item nav-link" href="#">Signup</a>
+        {% endif %}
+
+
+    </div>
+</nav>

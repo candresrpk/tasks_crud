@@ -6,4 +6,21 @@
     <h1>Welcome to the tasks crud</h1>
 
 
+    {% if user.is_authenticated %}
+
+        <p>You are logged in as {{ user.username }}</p>
+    
+    {% endif %}
+    
+    {% for task in tasks %}
+
+        <div class="card">
+
+            <h2>{{ task.title }}</h2>
+
+
+        </div>
+    
+    {% endfor %}
+
 {% endblock  %}

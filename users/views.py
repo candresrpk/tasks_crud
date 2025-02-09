@@ -1,37 +1,42 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import login
+from django.db import IntegrityError
 
 
 # Create your views here.
 
 
 def signupView(request):
-    
-    
+
     context = {
         'form': UserCreationForm
     }
-    
+
     if request.method == 'GET':
-        
-        return render(request, 'users/signup.html', context)    
-        
+
+        return render(request, 'users/signup.html', context)
+
     else:
-        
+
         if request.POST['password1'] == request.POST['password2']:
             try:
                 user = User.objects.create_user(
-                    username=request.POST['username'], 
+                    username=request.POST['username'],
                     password=request.POST['password1']
                 )
-                
+
                 user.save()
-                
+                login(request, user)
+
                 return redirect('tasks:index')
-            except Exception as e:
-                context['message'] = str(e)
+            except IntegrityError:
+                context['message'] = 'Username already exists'
                 return render(request, 'users/signup.html', context)
-            
+            except Exception as e:
+                context['message'] = 'Something went wrong, please contact the administrator'
+                return render(request, 'users/signup.html', context)
+
         context['message'] = 'Error password does not match'
         return render(request, 'users/signup.html', context)
