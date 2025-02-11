@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Tasks
+from .models import Task
+from .forms import TaskForm
 
 # Create your views here.
 
@@ -7,7 +8,7 @@ from .models import Tasks
 def HomeView(request):
 
     if request.user.is_authenticated:
-        tasks = Tasks.objects.filter(owner=request.user)
+        tasks = Task.objects.filter(owner=request.user)
 
         context = {
             'tasks': tasks
@@ -17,3 +18,13 @@ def HomeView(request):
         context = {}
 
     return render(request, 'tasks/home.html', context)
+
+
+def createTask(request):
+
+    context = {
+
+        'form': TaskForm
+    }
+
+    return render(request, 'tasks/create.html', context)

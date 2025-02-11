@@ -1,0 +1,20 @@
+{% extends "../base.html" %}
+
+
+{% block content %}
+
+    <div class="card">
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {{form.as_p}}
+
+
+            <button>Create Task</button>
+        </form>
+
+    </div>
+
+{% endblock  %}

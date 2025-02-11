@@ -9,18 +9,28 @@
     {% if user.is_authenticated %}
 
         <p>You are logged in as {{ user.username }}</p>
+
+        <a class="btn btn-primary" href="{% url 'tasks:create' %}">Create a Task</a>
+
+        {% for task in tasks %}
+
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{task.title}}</h2>
+                    <p class="card-text">{{task.description}}</p>
+                </div>
+            </div>
+    
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+            Do you have an account? sining here <a href="{% url "users:signin" %}">here </a>or <a href="{% url "users:signup" %}">create one</a>
+        </p>
     
     {% endif %}
     
-    {% for task in tasks %}
-
-        <div class="card">
-
-            <h2>{{ task.title }}</h2>
-
-
-        </div>
     
-    {% endfor %}
 
 {% endblock  %}
