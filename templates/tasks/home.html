@@ -8,6 +8,14 @@
 
     {% if user.is_authenticated %}
 
+        {% if message %}
+
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        
+        {% endif %}
+
         <p>You are logged in as {{ user.username }}</p>
 
         <a class="btn btn-primary" href="{% url 'tasks:create' %}">Create a Task</a>
@@ -20,6 +28,8 @@
                         <div class="card-body">
                             <h2 class="card-title">{{task.title}}</h2>
                             <p class="card-text">{{task.description}}</p>
+
+                            <a class="btn btn-primary" href="{% url 'tasks:detail' task.id %}">Detail</a>
                         </div>
                     </div>
                 </div>

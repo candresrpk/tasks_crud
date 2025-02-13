@@ -38,7 +38,7 @@ def signupView(request):
                 context['message'] = 'Something went wrong, please contact the administrator'
                 return render(request, 'users/signup.html', context)
 
-        context['message'] = 'Error password does not match'
+        context['message'] = 'Error password do not match'
         return render(request, 'users/signup.html', context)
 
 
